@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,11 +31,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _numeroAleatorio = 0;
+  List _frases = [
+    'O importante não é vencer todos os dia, mas lutar sempre.',
+    'É melhor conquistar a si mesmo do vencer mil batalhas.',
+    'O medo de perder tira a vontade de ganhar.',
+    'Perder para a razão, sempre é ganhar'
+  ];
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      _numeroAleatorio = Random().nextInt(4);
     });
   }
 
@@ -48,20 +56,19 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Pressione o botão para gerar uma frase:',
+              'Frase do dia:',
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              _frases[_numeroAleatorio],
+              style: Theme.of(context).textTheme.subtitle2,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          child: const Icon(Icons.add)),
     );
   }
 }
